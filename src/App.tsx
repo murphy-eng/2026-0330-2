@@ -211,35 +211,60 @@ const Hero = ({ onQuoteClick }: { onQuoteClick: () => void }) => {
 
 const CoreValues = () => {
   const values = [
-    { title: 'Professional', icon: <ShieldCheck size={32} />, color: 'bg-blue-600' },
-    { title: 'Multiple Satisfied Solutions', icon: <Settings size={32} />, color: 'bg-indigo-600' },
-    { title: 'Flexible and Efficiency', icon: <Zap size={32} />, color: 'bg-cyan-600' },
-    { title: 'High Add Values', icon: <TrendingUp size={32} />, color: 'bg-emerald-600' },
-    { title: 'Quick Response', icon: <Clock size={32} />, color: 'bg-amber-600' },
-    { title: 'Continue Improve', icon: <Users size={32} />, color: 'bg-rose-600' },
+    { title: 'Professional', icon: <ShieldCheck size={32} /> },
+    { title: 'Multiple Satisfied Solutions', icon: <Settings size={32} /> },
+    { title: 'Flexible and Efficiency', icon: <Zap size={32} /> },
+    { title: 'High Add Values', icon: <TrendingUp size={32} /> },
+    { title: 'Quick Response', icon: <Clock size={32} /> },
+    { title: 'Continue Improve', icon: <Users size={32} /> },
   ];
 
   return (
-    <section className="py-24 bg-neutral-bg">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">KOIOSLIN's Core Value</h2>
+    <section className="py-24 bg-gradient-to-b from-primary to-slate-900 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-secondary rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">KOIOSLIN's Core Value</h2>
           <div className="w-20 h-1 bg-accent mx-auto" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
-          {values.map((val, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center text-center group"
-            >
-              <div className={`w-24 h-24 md:w-32 md:h-32 hexagon ${val.color} flex items-center justify-center text-white mb-6 shadow-lg transition-all group-hover:shadow-accent/20`}>
-                {val.icon}
-              </div>
-              <h3 className="font-bold text-lg text-primary leading-tight px-4">{val.title}</h3>
-            </motion.div>
-          ))}
+        <div className="relative max-w-5xl mx-auto">
+          {/* Center Logo Hexagon (Desktop) */}
+          <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+            <div className="w-48 h-48 hexagon bg-white flex flex-col items-center justify-center text-primary shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+              <span className="font-black text-2xl tracking-tighter">KOIOSLIN</span>
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] mt-1">VALUE</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-y-16 md:gap-x-12 lg:gap-x-24">
+            {values.map((val, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -10 }}
+                className={`flex flex-col items-center text-center group ${
+                  idx === 1 ? 'lg:mb-32' : idx === 4 ? 'lg:mt-32' : ''
+                }`}
+              >
+                <div className="w-28 h-28 md:w-36 md:h-36 hexagon border border-white/30 bg-white/5 backdrop-blur-sm flex items-center justify-center text-white mb-6 transition-all group-hover:border-accent group-hover:bg-accent/10 group-hover:shadow-[0_0_30px_rgba(249,168,37,0.2)]">
+                  <div className="text-accent group-hover:text-white transition-colors">
+                    {val.icon}
+                  </div>
+                </div>
+                <h3 className="font-bold text-sm md:text-base text-white leading-tight px-4 max-w-[180px] group-hover:text-accent transition-colors">
+                  {val.title}
+                </h3>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
